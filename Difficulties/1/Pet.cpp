@@ -2,8 +2,8 @@
 
 int main()
 {
-    int winner_number;
-    int winner_points;
+    int winner_number = 0;
+    int winner_points = 0;
 
     for (size_t i = 1; i <= 5; i++) {
         int points = 0;
