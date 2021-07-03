@@ -7,7 +7,6 @@ int main()
     std::cin >> n;
 
     for (size_t i = 0; i < n; i++) {
-        std::string result = "Safe";
         float v, angle, x1, h1, h2;
         std::cin >> v >> angle >> x1 >> h1 >> h2;
 
