@@ -11,21 +11,25 @@ int main()
     std::cin >> input;
 
     for (unsigned int i(0); i < input.length(); ++i) {
-        bool smileFound {true};
+        bool smileFound{true};
 
-        for (unsigned int j(0); j < smiles.size(); ++j) {
-            if (smiles[j].length() - 1 + i > input.length() - 1)
+        for (auto & smile : smiles) {
+            if (smile.length() - 1 + i > input.length() - 1)
                 break;
 
-            for (unsigned int k(0); k < smiles[j].length(); ++j) {
-                if (smiles[j][k] != input[j + k]) {
+            for (unsigned int k(0); k < smile.length(); ++k) {
+                if (smile[k] == input[i + k]) {
+                    smileFound = true;
+                } else {
                     smileFound = false;
                     break;
                 }
             }
 
-            if (smileFound)
+            if (smileFound) {
                 std::cout << i << std::endl;
+                break;
+            }
         }
     }
 
