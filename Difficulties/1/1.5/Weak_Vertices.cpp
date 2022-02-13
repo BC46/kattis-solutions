@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
-int main(){
+int main()
+{
     int n;
     std::cin >> n;
     while(n != -1){
