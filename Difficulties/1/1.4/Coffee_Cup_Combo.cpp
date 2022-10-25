@@ -4,7 +4,6 @@ int main()
 {
     std::string input;
     int n, coffeeCount = 0, awakeLectures = 0;
-    bool hasCoffee;
 
     std::cin >> n >> input;
     for (const auto &coffee : input) {
