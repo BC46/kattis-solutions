@@ -2,43 +2,40 @@
 #include <vector>
 #include <algorithm>
 
-int GetCorresponding(int number, const std::vector<int> &l1, const std::vector<int> &l2) {
-    // TODO: Binary search
-    for (int i(0); i < l1.size(); ++i) {
-        if (number == l1[i])
-            return l2[i];
-    }
+using namespace std;
 
-    return 0;
+int GetCorresponding(short number, const vector<short> &l1, const vector<short> &l2) {
+    auto it = lower_bound(l1.begin(), l1.end(), number);
+    if (it == l1.end() || *it != number)
+        return 0;
+
+    return l2[distance(l1.begin(), it)];
 }
 
 int main()
 {
-    int amount;
-    std::cin >> amount;
+    short amount;
+    cin >> amount;
 
     while (amount > 0) {
-        std::vector<int> l1(amount);
-        std::vector<int> l2(amount);
+        vector<short> l1(amount), l1Sorted(amount), l2(amount);
 
-        for (int i(0); i < amount; ++i)
-            std::cin >> l1[i];
-
-        for (int i(0); i < amount; ++i)
-            std::cin >> l2[i];
-
-        std::vector<int> l1Sorted(l1);
-        std::vector<int> l2Sorted(l2);
-
-        std::sort(l1Sorted.begin(), l1Sorted.end());
-        std::sort(l2Sorted.begin(), l2Sorted.end());
-
-        for (int i : l1) {
-            std::cout << GetCorresponding(i, l1Sorted, l2Sorted) << std::endl;
+        for (int i = 0; i < amount; ++i) {
+            cin >> l1[i];
+            l1Sorted[i] = l1[i];
         }
 
-        std::cout << std::endl;
-        std::cin >> amount;
+        for (int i = 0; i < amount; ++i)
+            cin >> l2[i];
+
+        sort(l1Sorted.begin(), l1Sorted.end());
+        sort(l2.begin(), l2.end());
+
+        for (short i : l1)
+            cout << GetCorresponding(i, l1Sorted, l2) << endl;
+
+        cout << '\n';
+        cin >> amount;
     }
 
     return 0;
