@@ -31,7 +31,7 @@ int main()
         sort(l1Sorted.begin(), l1Sorted.end());
         sort(l2.begin(), l2.end());
 
-        for (short i : l1)
+        for (const auto &i : l1)
             cout << GetCorresponding(i, l1Sorted, l2) << endl;
 
         cout << '\n';
