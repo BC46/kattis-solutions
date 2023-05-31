@@ -3,6 +3,17 @@
 
 using namespace std;
 
+bool is3Consecutive(const char &prev, const char &input, int &cons) {
+    if (prev == input) {
+        if (++cons == 3) {
+            return true;
+        }
+    } else
+        cons = 1;
+
+    return false;
+}
+
 int main()
 {
     string input;
@@ -13,17 +24,19 @@ int main()
     cin >> n;
 
     char hist[n];
-    int cCons[n];
-    int cBwHist[n];
+    int cCons[n], cBwHist[n];
     memset(&hist, 0x30, sizeof(hist));
     memset(&cCons, 1, sizeof(cCons));
     memset(&cBwHist, 0, sizeof(cBwHist));
 
     for (int i = 0; i < n; ++i) {
+        cin >> input;
+
+        if (!sameBlackAndWhite || threeCons)
+            continue;
+
         char prev = '0';
         int rBws = 0, rCons = 1;
-
-        cin >> input;
 
         for (int j = 0; j < n; ++j) {
             int inc = input[j] == 'W' ? 1 : -1;
@@ -31,17 +44,8 @@ int main()
             rBws += inc;
             cBwHist[j] += inc;
 
-            if (hist[j] == input[j]) {
-                if (++cCons[j] == 3)
-                    threeCons = true;
-            } else
-                cCons[j] = 1;
-
-            if (prev == input[j]) {
-                if (++rCons == 3)
-                    threeCons = true;
-            } else
-                rCons = 1;
+            if (threeCons = (is3Consecutive(hist[j], input[j], cCons[j]) || is3Consecutive(prev, input[j], rCons)))
+                break;
 
             hist[j] = prev = input[j];
         }
@@ -50,11 +54,9 @@ int main()
             sameBlackAndWhite = false;
     }
 
-    if (!sameBlackAndWhite) {
-        for (int i = 0; i < n; ++i) {
-            if (cBwHist[i] != 0)
-                sameBlackAndWhite = false;
-        }
+    for (int i = 0; i < n && sameBlackAndWhite; ++i) {
+        if (cBwHist[i] != 0)
+            sameBlackAndWhite = false;
     }
 
     cout << (sameBlackAndWhite && !threeCons) << endl;
