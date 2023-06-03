@@ -5,11 +5,11 @@ using namespace std;
 int main()
 {
     string input;
-    int r, d = 1;
+    int right, d = 1;
 
-    cin >> r;
+    cin >> right;
 
-    int right = r, mid = r /= 2, left = 0;
+    int mid = right / 2, left = 0;
 
     while (input != "exact") {
         cout << mid * d++ << endl;
