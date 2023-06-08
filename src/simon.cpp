@@ -15,7 +15,7 @@ int main()
         getline(cin, input);
 
         if (input.find("simon says") == 0 && input.size() > 10)
-            cout << input.substr(11) << endl;
+            cout << input.substr(11);
 
         cout << '\n';
     }
