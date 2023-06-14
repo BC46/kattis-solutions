@@ -1,12 +1,11 @@
 #include <iostream>
-#include <unordered_set>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int main()
 {
-    unordered_set<int> cds;
-
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
@@ -19,21 +18,19 @@ int main()
         if (n == 0 && m == 0)
             break;
 
-        while (n--) {
-            cin >> input;
-            cds.insert(input);
-        }
+        vector<int> cds(n);
+
+        for (auto &cd : cds)
+            cin >> cd;
 
         while (m--) {
             cin >> input;
 
-            if (cds.find(input) != cds.end())
+            if (binary_search(cds.begin(), cds.end(), input))
                 ++total;
         }
 
         cout << total << '\n';
-
-        cds.clear();
     }
 
     return 0;
