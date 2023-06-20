@@ -1,5 +1,5 @@
 #include <iostream>
-#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -11,34 +11,18 @@ int main()
     int n, b, count = 0;
     cin >> n;
 
-    unordered_map<int, int> arrows;
+    vector<int> arrows(1000000, 0);
 
     while (n--) {
         cin >> b;
-        auto it = arrows.find(b);
 
-        if (it == arrows.end() || it->second == 0) {
-            if (b > 1) {
-                auto it2 = arrows.find(b - 1);
-
-                if (it2 == arrows.end())
-                    arrows.emplace( b - 1, 1);
-                else
-                    it2->second++;
-            }
-
+        if (arrows[b - 1] == 0)
             ++count;
-        } else {
-            it->second--;
+        else
+            arrows[b - 1]--;
 
-            auto it2 = arrows.find(b - 1);
-
-            if (it2 == arrows.end()) {
-                if (b > 1)
-                    arrows.emplace(b - 1, 1);
-            } else
-                it2->second++;
-        }
+        if (b > 1)
+            arrows[b - 2]++;
     }
 
     cout << count << '\n';
