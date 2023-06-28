@@ -6,6 +6,9 @@ using namespace std;
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int bR[1000], rR[1000];
     char color;
     int n, s, length, smallestLength, largestLength;
