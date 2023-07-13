@@ -1,25 +1,29 @@
 #include <iostream>
-#include <climits>
 
 using namespace std;
 
+void scanInt(unsigned int &x)
+{
+    x = 0;
+
+    for (unsigned int c = getchar_unlocked(); (c >= '0' && c <= '9'); c = getchar_unlocked())
+        x = (x << 1) + (x << 3) + c - '0';
+}
+
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+    unsigned int i, n, lowest = -1;
 
-    unsigned i, lowest = UINT_MAX;
-    int n;
-
-    cin >> n;
+    scanInt(n);
 
     while (n--) {
-        cin >> i;
+        scanInt(i);
 
         if (i < lowest)
             lowest = i;
     }
 
-    cout << lowest + 1 << '\n';
+    printf("%d\n", lowest + 1);
+
     return 0;
 }
