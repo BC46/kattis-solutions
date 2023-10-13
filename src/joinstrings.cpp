@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -30,13 +29,12 @@ int main()
     for (int i = 0; i < n - 1; ++i) {
         cin >> a >> b;
 
-        if (nodes[a - 1].last != nullptr) {
+        if (nodes[a - 1].last != nullptr)
             nodes[a - 1].last->next = &nodes[b - 1];
-            connect(nodes[a - 1], nodes[b - 1]);
-        } else {
+        else
             nodes[a - 1].next = &nodes[b - 1];
-            connect(nodes[a - 1], nodes[b - 1]);
-        }
+
+        connect(nodes[a - 1], nodes[b - 1]);
     }
 
     Node* final = n == 1 ? &nodes[0] : &nodes[a - 1];
