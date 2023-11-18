@@ -2,23 +2,16 @@
 
 using namespace std;
 
-struct Corn {
-    int a, l;
-};
-
 int main()
 {
-    Corn corns[5];
+    int a, l, n, kwf, total = 0;
 
-    int n, kwf, total = 0;
-
-    for (auto &corn : corns)
-        cin >> corn.a >> corn.l;
+    for (int i = 0; i < 5; ++i) {
+        cin >> a >> l;
+        total += a * l;
+    }
 
     cin >> n >> kwf;
-
-    for (auto &corn : corns)
-        total += corn.a * corn.l;
 
     total = total / 5 * n / kwf;
 
