@@ -19,9 +19,9 @@ int main()
             --digits;
         }
 
-        long long test = number_value, digit_amount = 0;
+        long long digit_amount = 0;
 
-        for (long long i = 0; test > i;) {
+        for (long long i = 0; number_value > i;) {
             ++digit_amount;
             i = pow(target_language.length(), digit_amount) - 1;
         }
